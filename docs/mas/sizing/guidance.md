@@ -40,6 +40,8 @@ Each OCP node running ODF services has:16 core / 64 GB memory
 
 Based on the benchmark results, for sizing we recommend 50 - 75 user load per MAS Manage UI server bundle pod, which is equivalent to a JVM with 2 core on Maximo 7.6.x.
 
+Network bandwidth requirements for MAS Manage are comparable to Maximo EAM, specifically between the application server and DB. The same is true for communications between client and application server. In Maximo EAM, the network communication is between client and IBM Http Server and in MAS the network communicaition is between client and Openshift Ingress. The client may see more transactions during the initial login because of additional user profile data for MAS, but overall the network bandwidth requirements are comparable.
+
 ## AI Service
 
 Based on the benchmark results, nl2oslc models should be configured with 20 workers and 8Gi of memory (MAX_INFERENCE_MEMORY), to improve parallelism of inference requests. At the time of this writing the Watson X service is the primary bottleneck. Additionally, the Watson X service imposes an upper limit of 8 requests per second per apikey.
